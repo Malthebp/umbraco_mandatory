@@ -1,0 +1,66 @@
+﻿@using System.Web.Optimization
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+    var theme = Model.Content.GetPropertyValue("navbarTheme").ToString().ToLower();
+    var themeColor = theme == "dark" ? "light" : "dark";
+}
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/custom-style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="nav-menu fixed-top nav-theme-">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-@themeColor navbar-expand-lg">
+                        <a class="navbar-brand" href="/">AwesomeWebsitesDK</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            @Html.Partial("Partials/_mainNav")
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section id="body">
+        @RenderBody()
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Kontakt mig:</h3>
+                    <ul>
+                        <li>malthe@intrace.dk</li>
+                        <li>22 71 79 15</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Hvad kan jeg?</h3>
+                    <ul>
+                        <li>Vue.js</li>
+                        <li>C#</li>
+                    </ul>
+                </div>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

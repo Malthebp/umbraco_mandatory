@@ -1,0 +1,47 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+
+@{
+    var loginModel = new LoginModel();
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresJs("/umbraco_client/ui/jquery.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+}
+
+@* NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed *@
+@Html.RenderJsHere()
+
+@using (Html.BeginUmbracoForm<UmbLoginController>("HandleLogin"))
+{
+<div class="col-md-8 offset-md-2 mt-5">
+    @Html.ValidationSummary("loginModel", true)
+
+    <div class="form-group row">
+        @Html.LabelFor(m => loginModel.Username, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => loginModel.Username, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => loginModel.Username, null, new { @class="text-danger small"})
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(m => loginModel.Password, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => loginModel.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => loginModel.Password, null, new { @class = "text-danger small" })
+        </div>
+    </div>
+    <div class="form-group d-flex justify-content-end">
+        <button class="btn btn-primary">Signin</button>
+    </div>
+</div>  
+}

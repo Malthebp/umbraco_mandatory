@@ -1,0 +1,33 @@
+﻿@using UmbracoMandatory.ViewModels
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<UmbracoMandatory.ViewModels.ForumViewModel>
+@{
+    Layout = "Master.cshtml";
+    var createUrl = Model.Content.Children.Where(x => x.Id == 1127).First().Url;
+}
+
+@* the fun starts here *@
+
+<header class="bg-gradient--red" id="contact"></header>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-end mb-4">
+            <a href="@createUrl" class="btn btn-secondary">Opret nyt indlæg</a>
+        </div>
+        <aside class="col-md-4">
+            <h3>Filter</h3>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    Dato
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Tags</a>
+            </div>
+        </aside>
+        <div class="col-md-8">
+            @foreach (var message in Model.Messages)
+            {
+                @Html.Partial("ForumMessage", message)
+            }
+        </div>
+    </div>
+</div>

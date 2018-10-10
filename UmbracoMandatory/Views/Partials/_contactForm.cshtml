@@ -1,0 +1,45 @@
+﻿@model UmbracoMandatory.ViewModels.ContactForm
+@{
+    var isSuccess = TempData["success"] != null;
+}
+
+<div class="contact-form__form">
+    @if (!isSuccess)
+    {
+        using (Html.BeginUmbracoForm("HandleFormSubmit", "ContactFormSurface", new object { }, new { @class = "" }))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Your name*" })
+                        @Html.ValidationMessageFor(x => x.Name, null, new { @class = "invalid-feedback" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Your e-mail*" })
+                        @Html.ValidationMessageFor(x => x.Email, null, new { @class = "invalid-feedback" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", placeholder = "Subject*" })
+                        @Html.ValidationMessageFor(x => x.Subject, null, new { @class = "invalid-feedback" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextAreaFor(x => x.Message, new { @class = "form-control contact-form__textarea", placeholder = "Message*" })
+                        @Html.ValidationMessageFor(x => x.Message, null, new { @class = "invalid-feedback" })
+                    </div>
+                    <div class="form-group d-flex justify-content-end">
+                        <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-center">
+            <h3>Thank you for contacting us!</h3>
+            <p>We will return right back at you as fast as possible.</p>
+        </div>
+    }
+</div>

@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+    var articles = Model.Content.Children().OrderBy("CreateDate desc");
+}
+
+<header class="bg-gradient" id="home">
+    <div class="container mt-5">
+        <h1>@Model.Content.Name</h1>
+    </div>
+</header>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        @foreach (var article in articles)
+        {
+            <div class="col-md-4">
+                <div class="project card">
+                    @if (article.GetPropertyValue("image") != null) {
+                        <img class="card-img-top" src="@article.GetCropUrl("image", "image")" alt="Card image cap">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@article.Name</h5>
+                        <p class="card-text">@article.GetPropertyValue("shortTitle")</p>
+                        <a href="@article.Url" class="btn btn-primary">@article.Name</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

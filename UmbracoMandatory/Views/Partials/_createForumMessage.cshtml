@@ -1,0 +1,27 @@
+﻿@model UmbracoMandatory.ViewModels.ForumMessage
+
+@{
+    ViewBag.Title = "_createForumMessage";
+}
+
+@using (Html.BeginUmbracoForm("HandleFormSubmit", "ForumSurface", new object { }, new { @class = "" }))
+{
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", placeholder = "Subject*" })
+                    @Html.ValidationMessageFor(x => x.Subject, null, new { @class = "invalid-feedback" })
+                </div>
+                <div class="form-group">
+                    @Html.TextAreaFor(x => x.Message, new { @class = "form-control contact-form__textarea", placeholder = "Message*" })
+                    @Html.ValidationMessageFor(x => x.Message, null, new { @class = "invalid-feedback" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="@Model.PreviousPath" class="btn btn-secondary">Back</a>
+        <input type="submit" name="btnSubmit" class="btn btn-primary" value="Create post" />
+    </div>
+ }

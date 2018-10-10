@@ -1,0 +1,24 @@
+﻿@model UmbracoMandatory.ViewModels.ForumMessage
+
+
+<div class="card mt-3 mb-3">
+    <div class="card-header d-flex justify-content-between">
+        <div>
+            <strong>@Model.Subject</strong>
+        </div>
+        <div class="text-muted">
+            @Model.CreatedAt
+        </div>
+    </div>
+    <div class="card-body">
+        @Model.Message
+    </div>
+    <div class="card-footer text-muted d-flex justify-content-between">
+        <div>
+            @*By: @Model.Member.Username*@
+        </div>
+        <div>
+            Svar
+        </div>
+    </div>
+</div>

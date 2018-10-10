@@ -1,0 +1,14 @@
+﻿@using UmbracoMandatory.ViewModels
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+}
+
+@* the fun starts here *@
+
+<header></header>
+<div class="container">
+    <h1>@Model.Content.Name</h1>
+
+    @Html.Partial("_createForumMessage", new ForumMessage() { PreviousPath = Model.Content.Url})
+</div>

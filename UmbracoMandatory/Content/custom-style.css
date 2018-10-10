@@ -1,0 +1,81 @@
+﻿.navbar .navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.page-section {
+    margin: 5% 0;
+}
+
+.project-item {
+    margin-top: 100px;
+}
+
+.project-item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+/*Contact us page*/
+.contact-form {
+    background: #fff;
+    margin-bottom: 5%;
+    width: 70%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 2;
+}
+.contact-form .form-control{
+    border-radius:1rem;
+}
+.contact-image {
+    text-align: center;
+}
+.contact-image img{
+    border-radius: 6rem;
+    width: 11%;
+    margin-top: -5%;
+    transform: rotate(29deg);
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.2);
+}
+.contact-form__form{
+    padding: 0 14% 7%;
+}
+.contact-form h1{
+    text-align: center;
+    color: #0062cc;
+}
+.contact-form__wrapper {
+    margin-top: 5%;
+}
+.contact-form .btnContact {
+    width: 50%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.btnContactSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}
+
+.contact-form__textarea {
+    min-height: 150px;
+    width: 100%;
+}
+
+.invalid-feedback {
+    display: block;
+}

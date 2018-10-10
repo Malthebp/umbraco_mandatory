@@ -1,0 +1,9 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+<header></header>
+<div class="project-item__content mt-5">
+    @Html.GetGridHtml(Model.Content, "pageContent")
+</div>

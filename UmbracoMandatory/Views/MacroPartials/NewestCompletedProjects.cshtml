@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+    var count = Model.MacroParameters["count"];
+    var projects = Model.Content.Site().FirstChild("projectMain").Children().Where(x => x.IsVisible()).Take(Convert.ToInt32(count)).OrderBy("CreateDate desc");
+    var col = 4;
+    switch (Convert.ToInt32(count)) {
+        case 1: 
+            col = 12;
+            break;
+        case 2: 
+            col = 6;
+            break;
+        case 3: 
+            col = 4;
+            break;
+        case 4: 
+            col = 3;
+            break;
+    }
+}
+<div class="projects-preview row">
+    @foreach (var project in projects)
+    {
+        <div class="col-md-@col">
+            <div class="project card">
+                <img class="card-img-top" src="@project.GetCropUrl("image", "previewImage")" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@project.GetPropertyValue("title")</h5>
+                    <p class="card-text">@project.GetPropertyValue("shortDescription")</p>
+                    <a href="@project.Url" class="btn btn-primary">Læs mere om @project.GetPropertyValue("shortTitle")</a>
+                </div>    
+            </div>
+        </div>
+    }
+</div>

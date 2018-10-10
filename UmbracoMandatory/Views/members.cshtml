@@ -1,0 +1,54 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+    var service = ApplicationContext.Current.Services.MemberService;
+    var active = service.GetMembersByGroup("Active");
+    var prospect = service.GetMembersByGroup("Prospect"); 
+}
+
+@* the fun starts here *@
+
+<header class="bg-gradient--blue"></header>
+
+<div class="container">
+    <div class="flex-wrap">
+        <div class="row">
+            <h2>Actives</h2>
+        </div>
+        <div class="row">
+            @foreach (var member in active)
+            {
+                var img = member.GetValue("photo") != null ? member.GetValue("photo").ToString().Split(',').ToList<string>() : null;
+                <div class="card col-lg-3 col-md-6">
+                @if (img != null)
+                {
+                    var src = img[2].Split(':').ToList<string>()[1].Replace('"', ' ').Trim();
+                    <img class="card-img-top" src="@src" alt="Card image cap">
+                }
+                <h5 class="card-title">@member.Name</h5>
+                <div class="card-body">
+                    <p>@member.Email</p>
+                    <p>@member.CreateDate</p>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="flex-wrap">
+        <div class="row">
+            <h2>Prospects</h2>
+        </div>
+        <div class="row">
+            @foreach (var member in prospect)
+            {
+                <div class="card col-lg-3 col-md-6">
+                    <h5 class="card-title">@member.Name</h5>
+                    <div class="card-body">
+                        <p>@member.Email</p>
+                        <p>@member.CreateDate</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

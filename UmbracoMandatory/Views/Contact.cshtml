@@ -1,0 +1,18 @@
+﻿@using UmbracoMandatory.ViewModels
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+@* the fun starts here *@
+<header class="bg-gradient--blue" id="contact">
+</header>
+<div class="container contact-form">
+    <div class="contact-image">
+        <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+    </div>
+    <div class="contact-form__wrapper">
+        <h1>@Model.Content.GetPropertyValue("headerTitle")</h1>
+        @Html.Action("Index", "ContactFormSurface")
+    </div>
+</div>

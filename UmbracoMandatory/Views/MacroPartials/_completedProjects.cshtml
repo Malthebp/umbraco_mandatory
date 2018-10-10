@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+    var projects = Model.Content.Site().FirstChild("projectMain").Children().Where(x => x.GetPropertyValue<string>("projectStatus") == "Completed").Take(2).OrderBy("CreateDate desc");
+}
+
+@foreach (var project in projects)
+{
+    <a class="dropdown-item nav-link" href="@project.Url">@project.Name</a>
+}

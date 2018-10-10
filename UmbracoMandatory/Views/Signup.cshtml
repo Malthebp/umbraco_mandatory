@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+@* the fun starts here *@
+
+<header class="bg-gradient--yellow">
+    <div class="container mt-5 text-black-50">
+        <h1>@Model.Content.Name</h1>
+    </div>
+</header>
+
+<div class="container">
+    @Html.Partial("_signup")
+</div>

@@ -1,0 +1,59 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Web
+
+@{
+    UmbracoHelper umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+    var signin = Model.Content.Site().GetPropertyValue<int>("signinPage");
+    var signinPage = umbracoHelper.TypedContent(signin);
+    var signup = Model.Content.Site().GetPropertyValue<int>("signupPage");
+    var signupPage = umbracoHelper.TypedContent(signup);
+
+    var selection = Model.Content.Site().Children.Where(x => x.IsVisible()).ToArray();
+    var theme = Model.Content.GetPropertyValue("navbarTheme", true).ToString().ToLower();
+}
+
+@if (selection.Length > 0)
+{
+<ul class="navbar-nav ml-auto">
+    @foreach (var item in selection)
+    {
+        if (item.GetPropertyValue<bool>("isNavigationDropDown"))
+        {
+            <li class="nav-item">
+                <a href="@item.Url" class="nav-link hoverlink">
+                    @item.Name <span class="ml-2">&#x25BC</span>
+                </a>
+                <div class="card dropdown-nav">
+                    @item.GetPropertyValue("selectDropDownitems")
+                </div>
+            </li>
+        }
+        else
+        {
+
+            <li class="nav-item @(item.IsAncestorOrSelf(Model.Content) ? "active" : null)">
+                <a class="nav-link" href="@item.Url">@item.Name</a>
+            </li>
+        }
+    }
+    @if (!Members.GetCurrentLoginStatus().IsLoggedIn)
+    {
+        <li class="nav-item"><a href="@signinPage.Url" class="nav-link">Log ind</a></li>
+        <li class="nav-item"><a href="@signupPage.Url" class="btn btn-outline-@theme my-3 my-sm-0 ml-lg-3">Opret</a></li>
+    }
+    else
+    {
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @Members.GetCurrentLoginStatus().Name
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a href="/profil" class="dropdown-item">Min profil</a>
+                <a href="/members/" class="dropdown-item">Alle brugere</a>
+                <hr />
+                @Html.Partial("_logout")
+            </div>
+        </div>
+    }
+</ul>
+}

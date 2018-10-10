@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+
+@{
+        var logoutModel = new PostRedirectModel() { RedirectUrl = "/"};
+        Html.EnableClientValidation();
+        Html.EnableUnobtrusiveJavaScript();
+        Html.RequiresJs("/umbraco_client/ui/jquery.js");
+        Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+        Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+    }
+
+
+@using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout", null, new { @class = "mb-0" }))
+{
+    <button class="dropdown-item mb-0">Log ud</button>
+    @Html.HiddenFor(m => logoutModel.RedirectUrl)
+}
